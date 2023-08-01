@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo-Page</title>
+    <link href="{% static 'Todo.css' %}" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="activities">
+      <h1>Your Activties</h1>
+      {% for message in messages %}
+      <h5>{{message}}</h5>
+      {% endfor %}
+      <br />
+      {% for todo_name in Todo %}
+      <li>
+        <h5>
+          {{todo_name.Activity_name}},<br />
+          {{todo_name.details}},<br />{{todo_name.date}}
+        </h5>
+      </li>
+      {% endfor %}
+    </div>
+    <h4>Create New To-do list</h4>
+    <div class="grid-container">
+      <form class="form3" action="" method="post">
+        {% csrf_token %}
+        <label for="">Acitivity Name</label>
+
+        <textarea name="todo-name" id="" cols="30" rows="10"></textarea>
+
+        <input type="submit" value="Create Acitivity" />
+      </form>
+    </div>
+  </body>
+</html>

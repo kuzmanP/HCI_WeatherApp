@@ -1,0 +1,203 @@
+from django.shortcuts import render,redirect
+
+# from weather.models import Todo
+
+# from weather.form import TodoForm
+
+from django.contrib.auth.models import User, auth
+
+from django.contrib import messages
+
+from django.contrib.auth import logout
+
+import json
+
+import urllib.request
+
+from weatherdetector import settings                     #from base dir settings
+
+from django.core.mail import send_mail                   #for mail services
+
+from django.contrib.sites.shortcuts import get_current_site
+
+from django.utils.http import urlsafe_base64_encode
+
+from django.template.loader import render_to_string
+
+from django.utils.encoding import force_bytes
+
+from weather.tokens import generate_token
+
+from django.core.mail import EmailMessage,send_mail 
+
+from weather.form import Contactform
+
+
+# Create your views here.
+def index(request):
+    if request.method == 'POST':
+        city = request.POST['city']
+        res = urllib.request.urlopen('https://api.openweathermap.org/data/2.5/weather?q='+city+'&appid=b79fe2651c79bf394d7bf6e84807b3b4').read() #get the city data using the api
+        json_data = json.loads(res) #Loads the json data from the api
+        data = {                                               #convert the json data into dictionary
+            "country_code":str(json_data['sys']['country']),  
+            "coordinate":str(json_data['coord']['lon']) + " " + str(json_data['coord']['lat']),
+            "temp":str(json_data['main']['temp'])+'C',
+            "pressure":str(json_data['main']['pressure']) + 'Pa',
+            "humidity":str(json_data['main']['humidity']) + 'atm', 
+                 
+        }
+          
+    else:
+        data = {}
+        
+    return render(request, 'index.html', data)    
+
+
+
+def Sign_up(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        password2 = request.POST['password2']
+        if password == password2:
+           if  User.objects.filter(username=username).exists():
+               messages.info(request, 'Username Already Used')
+               return redirect('Sign_up')
+           elif User.objects.filter(email=email).exists():
+               messages.info(request, 'Email Already Used')
+               return redirect('Sign_up')
+      
+           else:
+               user = User.objects.create_user(username=username,email = email,password=password)
+               user.is_active = True
+               user.save();
+               
+               #Email welcome
+               
+               subject = 'Welcome to Flint Weather App '
+               
+               message = 'Hello' + user.username + '!!' + 'Welcome to the Flint Weather App\n Thank you foe visting our website\n we have sent you a confirmation email\n Kindly confirm to activate your account\n Thank You\n The Flint weather Team'
+               
+               from_email = settings.EMAIL_HOST_USER
+               
+               to_list = [user.email]
+               
+               send_mail(subject,message,from_email,to_list,fail_silently = True )
+               
+               
+               #Email Address Confirmation Email
+               
+            #    current_site = get_current_site
+               
+            #    message2 = render(request, 'email_confirmation.html',{
+            #        'name':user.username,
+            #        'domain':current_site,
+            #        'uid':urlsafe_base64_encode(force_bytes(user.pk)),
+            #        'token':generate_token.make_token(user)
+            #    })
+            #    email = EmailMessage(
+            #        subject,
+            #        message2,
+            #        settings.EMAIL_HOST_USER,
+            #        [user.email],
+            #    )
+            #    email.fail_silently = True
+               
+            #    send_mail(subject,from_email,message, recipient_list)
+               
+               
+            #    messages.info(request, 'Account Successfully created,\n We have sent a confirmation to your mail to activate your account')
+               
+            #    return redirect('Log_in')
+           
+                
+        else:
+            messages.info(request, 'Passwords Dont Match')
+            return redirect('Sign_up')           
+               
+    return render(request, 'Sign_up.html')
+
+
+
+def Log_in(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = auth.authenticate(username=username,password=password)
+        if user is not None:
+            auth.login(request, user)
+            return redirect('/')
+        else:
+            messages.info(request, 'No such user')
+            return redirect('Log_in')
+    else:
+        return render(request, 'Log_in.html')
+        
+        return render(request, 'Log_in.html')
+        
+def Log_out(request):
+    auth.logout(request)
+    return redirect('/')
+
+
+
+# def todo(request):
+#     item_list = Todo.objects.order_by('-date')
+#     if request.method == POST:
+#         form = TodoForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('todo')
+#     form = TodoForm()    
+            
+        
+#     page = {
+#         'forms':form,
+#         'list':item_list,
+#         'Activity Name':'TODO-LIST'    
+#     }
+    
+#     return render(request, 'todo.html', page)
+
+
+
+
+
+
+
+
+
+
+# def todo(request):
+#     if request.method == 'POST':
+#         # todo_list = request.POST['text']
+#         # todo_list = Todo.objects.create(todo_list = todo_list)
+#         # todo_list.save()
+#         # messages.info(request, 'Activity Created Successfully')
+#         # return render(request, 'todo.html', {'todo_list':todo_list})
+#         todo_name = Todo
+#         todo_name = Todo.objects.all()  
+#         messages.info(request, 'Activity Created Successfully')
+#         return render(request, 'todo.html', {'Todo':todo_name})
+#     else:
+#         return render(request, 'todo.html')
+#         return render(request, 'todo.html')
+
+def Contact(request):
+    if request.method == 'POST':
+        form = Contactform(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            body = form.cleaned_data['body']
+            messages.info(request, 'Message sent!')
+            print(name , email, body)
+        else:
+            messages.info(request, 'Invalid Form')    
+    else:
+        return render(request, 'forms.html')        
+    form = Contactform()
+    return render(request, 'forms.html', {'form':form})
+        

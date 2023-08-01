@@ -1,0 +1,90 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Detector</title>
+    <link href="{% static 'index.css' %}" rel="stylesheet" />
+  </head>
+  <body>
+    <section class="vh-100">
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-md-8 col-lg-6 col-xl-4">
+            {% if user.is_authenticated %}
+            <h3 class="mb-4 pb-2 fw-normal">
+              {{user.username}},Check the City weather Condition
+            </h3>
+            {% endif %}
+            <form action="" method="post">
+              {% csrf_token %}
+              <input
+                type="text"
+                class="form-control rounded"
+                name="city"
+                placeholder="City"
+                aria-label="Search"
+                aria-describedby="search-addon"
+              />
+
+              <input class="button1" type="submit" value="Check" />
+            </form>
+            <br />
+            <div class="mb-4 pb-2">
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="inlineRadioOptions"
+                  id="inlineRadio1"
+                  value="option1"
+                  checked
+                />
+                <label class="form-check-label" for="inlineRadio1"
+                  >Celsius</label
+                >
+              </div>
+
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="inlineRadioOptions"
+                  id="inlineRadio2"
+                  value="option2"
+                />
+                <label class="form-check-label" for="inlineRadio2"
+                  >Farenheit</label
+                >
+              </div>
+            </div>
+
+            <div class="card shadow-0 border">
+              <div class="card-body p-4">
+                <p>Country Code : {{country_code}}</p>
+                <p>Country Coordinate : {{coordinate}}</p>
+                <p>Temperature : {{temp}}</p>
+                <p>Pressure : {{pressure}}</p>
+                <p>Humidity : {{humidity}}</p>
+
+                <div class="d-flex flex-row align-items-center">
+                  <i class="fas fa-cloud fa-3x" style="color: #eee"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="logout">
+        {% if user.is_authenticated %}
+        <button class="button"><a href="Log_in">Log Out</a></button>
+        {% else %}
+        <a class="" href="Sign_up">SIGN UP</a>
+        {% endif %}
+      </div>
+    </section>
+  </body>
+</html>

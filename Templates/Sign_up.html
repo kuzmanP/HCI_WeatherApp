@@ -1,0 +1,58 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flint Sign_up</title>
+    <link href="{% static 'Sign_up.css' %}" rel="stylesheet" />
+  </head>
+  <body>
+    <h2>To use Flint&trade; Sign Up</h2>
+    <form class="vh-100" action="" method="post">
+      {% csrf_token %} {% for message in messages %}
+      <h3>{{message}}</h3>
+      {% endfor %}
+      <label for="">Username</label>
+      <br />
+      <input
+        type="text"
+        name="username"
+        id=""
+        required
+        maxlength="20"
+        minlength="5"
+      />
+
+      <label for="">Email</label>
+      <br />
+      <input type="email" name="email" id="" required />
+
+      <label for="">Passcode</label>
+      <br />
+      <input
+        type="password"
+        name="password"
+        id=""
+        required
+        minlength="5"
+        maxlength="20"
+      />
+
+      <label for="">Confirm Passcode</label>
+      <br />
+      <input
+        type="password"
+        name="password2"
+        id=""
+        required
+        minlength="5"
+        maxlength="20"
+      />
+      <br />
+      <input type="submit" value="Sign Up" />
+    </form>
+  </body>
+</html>

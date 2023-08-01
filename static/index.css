@@ -1,0 +1,42 @@
+body {
+  display: grid;
+  place-items: center;
+  margin-top: 100px;
+  background-color: rgb(250, 244, 220);
+  background-image: url(./images/go.jpg);
+  background-size: cover;
+  background-repeat: space;
+}
+.vh-100 {
+  display: grid;
+  place-items: center;
+  height: 510px;
+  width: 800px;
+  background-color: aqua;
+  border-radius: 30px;
+  font-size: large;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.button {
+  display: grid;
+  grid-auto-flow: column;
+  border: solid 0.25em;
+  margin-top: -10px;
+  padding: 1em 1.5em;
+  border-radius: 10px;
+  font-size: small;
+  font-family: sans-serif;
+  text-transform: capitalize;
+}
+.button1 {
+  display: grid;
+  grid-auto-flow: column;
+  border: solid 0.25em;
+  margin-top: -10px;
+  padding: 1em 1.5em;
+  border-radius: 10px;
+  font-size: small;
+  font-family: sans-serif;
+  text-transform: capitalize;
+  float: right;
+}

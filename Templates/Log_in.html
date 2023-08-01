@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log in</title>
+    <link href="{% static 'Log_in.css' %}" rel="stylesheet" />
+  </head>
+  <body>
+    <h2></h2>
+    <form class="grid-item" action="" method="post">
+      {% csrf_token %} {% for message in messages %}
+      <h3>{{message}}</h3>
+      {% endfor %}
+      <label class="label" for="">Username</label>
+      <input
+        type="text"
+        name="username"
+        id=""
+        required
+        maxlength="20"
+        minlength="5"
+      />
+      <label class="label" for="">Passcode</label>
+      <input
+        type="password"
+        name="password"
+        id=""
+        required
+        minlength="5"
+        maxlength="20"
+      />
+      <input class="button" type="submit" value="Log in" />
+      <div class="pg1">
+        <h5>Don't Have An Account?</h5>
+        <button class="button2"><a href="Sign_up">Sign Up</a></button>
+      </div>
+    </form>
+  </body>
+</html>

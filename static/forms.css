@@ -1,0 +1,16 @@
+body {
+  display: grid;
+  place-items: center;
+  margin-top: 30px;
+  background-color: rgb(50, 56, 56);
+}
+.form3 {
+  display:grid;
+  place-items: center;
+  height: 750px;
+  width: 900px;
+  background-color: rgb(199, 226, 226);
+  border-radius: 30px;
+  font-size: large;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
