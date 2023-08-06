@@ -50,9 +50,14 @@ def index(request):
           
     else:
         data = {}
+        return render(request, 'index.html', data)  
         
     return render(request, 'index.html', data)    
 
+
+def liveLocation(request):
+    return redirect("https://www.meteoblue.com/en/weather/maps/index#coords=9.44/5.3307/-1.9138&map=windAnimation~rainbow~auto~10%20m%20above%20gnd~none")
+    
 
 
 def Sign_up(request):
