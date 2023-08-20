@@ -68,11 +68,15 @@ def landingPage(request):
 
     # Extract relevant weather information from the API response
     temperature = weather_data['main']['temp']
+    pressure = weather_data['main']['pressure']
+    humidity = weather_data['main']['humidity']
     description = weather_data['weather'][0]['description']
 
     # Pass the location and weather data to the template
     context = {
     'temperature': temperature,
+    'pressure': pressure,
+    'humidity': humidity,
     'description': description,
     'country': country,
     'region': region,
