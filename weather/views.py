@@ -1,9 +1,9 @@
 from django.shortcuts import render,redirect
+import json
 
 # from weather.models import Todo
 
 # from weather.form import TodoForm
-
 from django.contrib.auth.models import User, auth
 
 from django.contrib import messages
@@ -31,6 +31,60 @@ from weather.tokens import generate_token
 from django.core.mail import EmailMessage,send_mail 
 
 from weather.form import Contactform
+import requests
+from django.shortcuts import render
+import geocoder
+
+API_KEY = '4e12830424ab4806a3445d9bab7c9101'
+GEOLOCATION_API_URL = f'https://ipgeolocation.abstractapi.com/v1/?api_key={API_KEY}'
+
+def get_ip_geolocation_data(ip_address):
+    response = requests.get(GEOLOCATION_API_URL)
+    return response.json()
+
+
+
+def landingPage(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+
+    if x_forwarded_for:
+
+       ip = x_forwarded_for.split(',')[0]
+
+    else:
+
+       ip = request.META.get('REMOTE_ADDR')
+       
+    geolocation_data = get_ip_geolocation_data(ip)
+    country = geolocation_data.get('country')
+    region = geolocation_data.get('region')
+    lon=geolocation_data.get('longitude')
+    lat=geolocation_data.get('latitude')
+    # Fetch weather data using OpenWeatherMap API
+    api_key = 'b79fe2651c79bf394d7bf6e84807b3b4'
+    weather_url = f'https://api.openweathermap.org/data/2.5/weather?lat={lon}&lon={lat}&appid={api_key}&units=metric'
+    response = requests.get(weather_url)
+    weather_data = response.json()
+
+    # Extract relevant weather information from the API response
+    temperature = weather_data['main']['temp']
+    description = weather_data['weather'][0]['description']
+
+    # Pass the location and weather data to the template
+    context = {
+    'temperature': temperature,
+    'description': description,
+    'country': country,
+    'region': region,
+    'lon': lon,
+    'lat': lat,
+    }
+
+    return render(request, 'Templates/homepage.html', context)
+    return render(request, 'Templates/homepage.html')
+    
+
+
 
 
 # Create your views here.
