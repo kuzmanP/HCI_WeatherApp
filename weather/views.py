@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 import json
-
+from datetime import datetime
+from django.utils import timezone
 # from weather.models import Todo
 
 # from weather.form import TodoForm
@@ -45,6 +46,13 @@ def get_ip_geolocation_data(ip_address):
 
 
 def landingPage(request):
+    current_datetime = datetime.now()
+    current_datetime_with_tz = timezone.now()
+
+    context = {
+        'current_datetime': current_datetime,
+        'current_datetime_with_tz': current_datetime_with_tz,
+    }
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
 
     if x_forwarded_for:
@@ -82,6 +90,8 @@ def landingPage(request):
     'region': region,
     'lon': lon,
     'lat': lat,
+    'current_datetime': current_datetime,
+    'current_datetime_with_tz': current_datetime_with_tz
     }
 
     return render(request, 'Templates/homepage.html', context)
@@ -136,7 +146,7 @@ def Sign_up(request):
                user = User.objects.create_user(username=username,email = email,password=password)
                user.is_active = True
                user.save();
-               
+               return redirect('Log_in')
                #Email welcome
                
                subject = 'Welcome to Flint Weather App '
