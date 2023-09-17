@@ -45,7 +45,7 @@ def get_ip_geolocation_data(ip_address):
 
 
 
-def landingPage(request):
+def index(request):
     current_datetime = datetime.now()
     current_datetime_with_tz = timezone.now()
 
@@ -102,7 +102,7 @@ def landingPage(request):
 
 
 # Create your views here.
-def index(request):
+def landingPage(request):
     if request.method == 'POST':
         city = request.POST['city']
         res = urllib.request.urlopen('https://api.openweathermap.org/data/2.5/weather?q='+city+'&appid=b79fe2651c79bf394d7bf6e84807b3b4').read() #get the city data using the api
