@@ -203,7 +203,7 @@ def Log_in(request):
             auth.login(request, user)
             return redirect('/')
         else:
-            messages.info(request, 'No such user')
+            messages.info(request, 'No such user, Enter Correct Details')
             return redirect('Log_in')
     else:
         return render(request, 'Log_in.html')
