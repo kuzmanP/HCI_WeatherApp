@@ -13,30 +13,39 @@
     />
     <style>
       body {
-        background-color: #f0f0f0;
+        background-color: #007bff;
         margin: 0;
         padding: 0;
       }
 
       .login-container {
-        margin-top: 150px;
+
         display: flex;
+        height: 100vh;
         justify-content: center;
         align-items: center;
-        height: 100vh;
       }
 
       .left-message {
         background-color: #007bff; /* Background color for the message */
-        padding: 20px; /* Add some padding for spacing */
+        padding: 250px 20px 30px 30px; /* Add some padding for spacing */
+        text-align: center;
+        color: #ffffff;
       }
 
+      .weather-text {
+            font-weight: bold;
+            color: #ffffff; /* Customize the text color */
+            margin-top: 10px; /* Add some space below the login button */
+            font-family: Arial, sans-serif; /* Use the custom font */
+        }
+
       .right-login {
-        text-align: center;
-        border-top-right-radius: 20px; /* Rounded corners on the right side */
-        border-bottom-right-radius: 20px;
-        color: white; /* Text color */
-        padding: 20px; /* Add some padding for spacing */
+        border-top-left-radius: 20px; /* Rounded corners on the leftside */
+        border-bottom-left-radius: 20px;
+        color: rgb(0, 0, 0); /* Text color */
+        background-color: #ffffff;
+        
       }
 
       .login-form {
@@ -48,10 +57,10 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-6 left-message">
-          <h2>Welcome to Weather App</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <h2 class="weather-text">Welcome to Weather App</h2>
+          <p class="weather-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </div>
-        <div class="col-md-6 login-container">
+        <div class="col-md-6 right-login login-container">
           <form action="" method="post" class="login-form">
             {% csrf_token %} {% for message in messages %}
             <div class="alert alert-danger" role="alert">{{ message }}</div>
@@ -79,12 +88,15 @@
             <button type="submit" class="btn btn-primary w-100">
               Log in
             </button>
-          </form>
-          <div class="text-center mt-3">
+            <div class="text-center mt-3">
             Don't have an account?
             <a href="Sign_up" class="text-decoration-none">Sign Up</a>
           </div>
+          </form>
+          
+
         </div>
+
       </div>
     </div>
   </body>
