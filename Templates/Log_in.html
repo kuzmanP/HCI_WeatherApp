@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <title>Weather App Login</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
@@ -11,52 +14,75 @@
     <style>
       body {
         background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
       }
+
       .login-container {
         margin-top: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .left-message {
+        background-color: #007bff; /* Background color for the message */
+        padding: 20px; /* Add some padding for spacing */
+      }
+
+      .right-login {
+        text-align: center;
+        border-top-right-radius: 20px; /* Rounded corners on the right side */
+        border-bottom-right-radius: 20px;
+        color: white; /* Text color */
+        padding: 20px; /* Add some padding for spacing */
+      }
+
+      .login-form {
+        margin-top: 20px; /* Add some space between the message and login form */
       }
     </style>
   </head>
   <body>
-    <div class="container login-container">
-      <div class="row justify-content-center">
-        <div class="col-md-6 col-lg-4">
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title text-center">Weather App Login</h4>
-              <form action="" method="post">
-                {% csrf_token %} {% for message in messages %}
-                <div class="alert alert-danger" role="alert">{{ message }}</div>
-                {% endfor %}
-                <div class="mb-3">
-                  <label for="username" class="form-label">Username</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="username"
-                    name="username"
-                    required
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="password" class="form-label">Password</label>
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="password"
-                    name="password"
-                    required
-                  />
-                </div>
-                <button type="submit" class="btn btn-primary w-100">
-                  Log in
-                </button>
-              </form>
-              <div class="text-center mt-3">
-                Don't have an account?
-                <a href="Sign_up" class="text-decoration-none">Sign Up</a>
-              </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 left-message">
+          <h2>Welcome to Weather App</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+        <div class="col-md-6 login-container">
+          <form action="" method="post" class="login-form">
+            {% csrf_token %} {% for message in messages %}
+            <div class="alert alert-danger" role="alert">{{ message }}</div>
+            {% endfor %}
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input
+                type="text"
+                class="form-control"
+                id="username"
+                name="username"
+                required
+              />
             </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                name="password"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-primary w-100">
+              Log in
+            </button>
+          </form>
+          <div class="text-center mt-3">
+            Don't have an account?
+            <a href="Sign_up" class="text-decoration-none">Sign Up</a>
           </div>
         </div>
       </div>

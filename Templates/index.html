@@ -34,10 +34,10 @@
               <a class="nav-link" href="home">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/">Dashboard</a>
+              <a class="nav-link" href="home">Dashboard</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="home">Search A Place</a>
+              <a class="nav-link" href="/">Search A Place</a>
             </li>
           </ul>
         </div>
@@ -97,6 +97,13 @@
               <div class="d-flex flex-row align-items-center">
                 <i class="fas fa-cloud fa-3x" style="color: #eee"></i>
               </div>
+
+              <h2>Search History</h2>
+              <ul>
+                {% for entry in search_history %}
+                <li>{{ entry.city }} - {{ entry.search_time }}</li>
+                {% endfor %}
+              </ul>
             </div>
           </div>
         </div>
