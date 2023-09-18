@@ -37,11 +37,82 @@
                     <div class="conditions">Real-Time Date</div>
                 </div>
 
+<<<<<<< HEAD
                 <!-- Temperature Card -->
                 <div class="weather-card long-card">
                     <i class="weather-icon fas fa-cloud"></i>
                     <div class="temperature">{{temperature}}°C</div>
                     <div class="conditions">Temperature</div>
+=======
+                <!-- Main Weather Card -->
+                <div class="col-md-9 page-content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="weather-card">
+                                <i class="weather-icon fas fa-clock"></i>
+                                <div class="temperature">{{current_datetime_with_tz}}</div>
+                                <div class="conditions">Real-Time Date</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rest of your weather cards and content goes here -->
+
+                    <!-- Main Weather Card -->
+                    <div class="col-md-9 page-content">
+                       
+
+                        <!-- First Column: Temperature and Pressure -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="weather-card">
+                                    <i class="weather-icon fas fa-cloud"></i>
+                                    <div class="temperature">{{temperature}}°C</div>
+                                    <div class="conditions">Temperature</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="weather-card">
+                                    <i class="weather-icon fas fa-sun"></i>
+                                    <div class="temperature">{{pressure}} Pa</div>
+                                    <div class="conditions">Pressure</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Second Column: Humidity, Description, Country, Region -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="weather-card">
+                                    <i class="weather-icon fas fa-cloud-rain"></i>
+                                    <div class="temperature">{{humidity}} %</div>
+                                    <div class="conditions">Humidity</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="weather-card">
+                                    <i class="weather-icon fas fa-cloud-rain"></i>
+                                    <div class="temperature">{{description}}</div>
+                                    <div class="conditions">Description</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="weather-card">
+                                    <i class="weather-icon fas fa-cloud-rain"></i>
+                                    <div class="temperature">{{country}}</div>
+                                    <div class="conditions">Country</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="weather-card">
+                                    <i class="weather-icon fas fa-cloud-rain"></i>
+                                    <div class="temperature">{{region}}</div>
+                                    <div class="conditions">Region</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+>>>>>>> 2e4714eda5d76f0c3dc95f0c7a0c249e27d530e4
                 </div>
             </div>
 
