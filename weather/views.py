@@ -3,7 +3,7 @@ import json
 from datetime import datetime
 from django.utils import timezone
 # from weather.models import Todo
-
+from .models import SearchHistory
 # from weather.form import TodoForm
 from django.contrib.auth.models import User, auth
 
@@ -107,20 +107,22 @@ def landingPage(request):
         city = request.POST['city']
         res = urllib.request.urlopen('https://api.openweathermap.org/data/2.5/weather?q='+city+'&appid=b79fe2651c79bf394d7bf6e84807b3b4').read() #get the city data using the api
         json_data = json.loads(res) #Loads the json data from the api
+        SearchHistory.objects.create(city=city)
+        search_history = SearchHistory.objects.order_by('-search_time')[:10]
         data = {                                               #convert the json data into dictionary
             "country_code":str(json_data['sys']['country']),  
             "coordinate":str(json_data['coord']['lon']) + " " + str(json_data['coord']['lat']),
             "temp":str(json_data['main']['temp'])+'C',
             "pressure":str(json_data['main']['pressure']) + 'Pa',
             "humidity":str(json_data['main']['humidity']) + 'atm', 
-                 
+            "search_history":search_history
         }
           
     else:
         data = {}
         return render(request, 'index.html', data)  
         
-    return render(request, 'index.html', data)    
+    return render(request, 'index.html', data, )    
 
 
 def liveLocation(request):
@@ -187,7 +189,7 @@ def Sign_up(request):
            
                 
         else:
-            messages.info(request, 'Passwords Dont Match')
+            messages.info(request, 'Passwords Do not Match')
             return redirect('Sign_up')           
                
     return render(request, 'Sign_up.html')
@@ -212,7 +214,7 @@ def Log_in(request):
         
 def Log_out(request):
     auth.logout(request)
-    return redirect('/')
+    return redirect('Log_in')
 
 
 
