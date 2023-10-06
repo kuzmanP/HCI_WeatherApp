@@ -1,204 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Drawer Page</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/homepage.css">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/static/homepage.css" />
+  </head>
+  <body>
     <!-- Menu Toggle Button -->
     <div class="menu-toggle" onclick="toggleDrawer()">
-        <i class="fas fa-bars"></i>
+      <i class="fas fa-bars"></i>
     </div>
 
     <!-- Navigation Drawer -->
     <div class="drawer" id="myDrawer">
-        <div class="logo">
-            <img src="your-logo.png" alt="Logo">
-        </div>
-        <div class="drawer-icons">
-            <a href="home"><i class="fas fa-home"></i><span class="icon-text">Home</span></a>
-            <a href="Log_out"><i class="fas fa-sign-out-alt"></i><span class="icon-text">Log Out</span></a>
-            <a href="home"><i class="fas fa-tachometer-alt"></i><span class="icon-text">Dashboard</span></a>
-            <a href="livelocation"><i class="fas fa-search-location"></i><span class="icon-text">Live Location</span></a>
-        </div>
+      <div class="logo">
+        <img src="your-logo.png" alt="Logo" />
+      </div>
+      <div class="drawer-icons">
+        <a href="home"
+          ><i class="fas fa-home"></i><span class="icon-text">Home</span></a
+        >
+        <a href="Log_out"
+          ><i class="fas fa-sign-out-alt"></i
+          ><span class="icon-text">Log Out</span></a
+        >
+        <a href="home"
+          ><i class="fas fa-tachometer-alt"></i
+          ><span class="icon-text">Dashboard</span></a
+        >
+        <a href="livelocation"
+          ><i class="fas fa-search-location"></i
+          ><span class="icon-text">Live Location</span></a
+        >
+      </div>
     </div>
 
     <!-- Content Area -->
     <div class="content-container">
-        <div class="row content">
-            <div class="left-division col-sm-6">
-                <!-- Main Weather Card -->
-                <div class="weather-card">
-                    <i class="weather-icon fas fa-clock"></i>
-                    <div class="temperature">{{current_datetime_with_tz}}</div>
-                    <div class="conditions">Real-Time Date</div>
-                </div>
+      <div class="row content">
+        <div class="left-division col-sm-6">
+          <!-- Main Weather Card -->
+          <div class="weather-card">
+            <i class="weather-icon fas fa-clock"></i>
+            <div class="temperature">{{current_datetime_with_tz}}</div>
+            <div class="conditions">Real-Time Date</div>
+          </div>
 
-<<<<<<< HEAD
-                <!-- Temperature Card -->
-                <div class="weather-card long-card">
-                    <i class="weather-icon fas fa-cloud"></i>
-                    <div class="temperature">{{temperature}}°C</div>
-                    <div class="conditions">Temperature</div>
-=======
-                <!-- Main Weather Card -->
-                <div class="col-md-9 page-content">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="weather-card">
-                                <i class="weather-icon fas fa-clock"></i>
-                                <div class="temperature">{{current_datetime_with_tz}}</div>
-                                <div class="conditions">Real-Time Date</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Rest of your weather cards and content goes here -->
-
-                    <!-- Main Weather Card -->
-                    <div class="col-md-9 page-content">
-                       
-
-                        <!-- First Column: Temperature and Pressure -->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="weather-card">
-                                    <i class="weather-icon fas fa-cloud"></i>
-                                    <div class="temperature">{{temperature}}°C</div>
-                                    <div class="conditions">Temperature</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="weather-card">
-                                    <i class="weather-icon fas fa-sun"></i>
-                                    <div class="temperature">{{pressure}} Pa</div>
-                                    <div class="conditions">Pressure</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Second Column: Humidity, Description, Country, Region -->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="weather-card">
-                                    <i class="weather-icon fas fa-cloud-rain"></i>
-                                    <div class="temperature">{{humidity}} %</div>
-                                    <div class="conditions">Humidity</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="weather-card">
-                                    <i class="weather-icon fas fa-cloud-rain"></i>
-                                    <div class="temperature">{{description}}</div>
-                                    <div class="conditions">Description</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="weather-card">
-                                    <i class="weather-icon fas fa-cloud-rain"></i>
-                                    <div class="temperature">{{country}}</div>
-                                    <div class="conditions">Country</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="weather-card">
-                                    <i class="weather-icon fas fa-cloud-rain"></i>
-                                    <div class="temperature">{{region}}</div>
-                                    <div class="conditions">Region</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
->>>>>>> 2e4714eda5d76f0c3dc95f0c7a0c249e27d530e4
-                </div>
-            </div>
-
-            <div class="right-division col-sm-6">
-                <!-- Pressure Card -->
-                <div class="weather-card">
-                    <i class="weather-icon fas fa-sun"></i>
-                    <div class="temperature">{{pressure}} Pa</div>
-                    <div class="conditions">Pressure</div>
-                </div>
-
-                   <!-- Lower Right Division -->
-                   <div class="lower-right-division">
-                    <div class="row">
-                        <!-- Humidity Card -->
-                        <div class="col-sm">
-                            <div class="mini-weather-card medium-card">
-                                <i class="weather-icon fas fa-cloud-rain"></i>
-                                <div class="temperature">{{humidity}} %</div>
-                                <div class="conditions">Humidity</div>
-                            </div>
-                        </div>
-
-                        <!-- Description Card -->
-                        <div class="col-sm">
-                            <div class="mini-weather-card medium-card">
-                                <i class="weather-icon fas fa-cloud-rain"></i>
-                                <div class="temperature">{{description}}</div>
-                                <div class="conditions">Description</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <!-- Country Card -->
-                        <div class="col-sm">
-                            <div class="mini-weather-card medium-card">
-                                <i class="weather-icon fas fa-cloud-rain"></i>
-                                <div class="temperature">{{country}}</div>
-                                <div class="conditions">Country</div>
-                            </div>
-                        </div>
-
-                        <!-- Region Card -->
-                        <div class="col-sm">
-                            <div class="mini-weather-card medium-card">
-                                <i class="weather-icon fas fa-cloud-rain"></i>
-                                <div class="temperature">{{region}}</div>
-                                <div class="conditions">Region</div>
-                            </div>
-                        </div>
-
-            </div>
+          <!-- Temperature Card -->
+          <div class="weather-card long-card">
+            <i class="weather-icon fas fa-cloud"></i>
+            <div class="temperature">{{temperature}}°C</div>
+            <div class="conditions">Temperature</div>
+          </div>
         </div>
-    </div>
 
+        <div class="right-division col-sm-6">
+          <!-- Pressure Card -->
+          <div class="weather-card">
+            <i class="weather-icon fas fa-sun"></i>
+            <div class="temperature">{{pressure}} Pa</div>
+            <div class="conditions">Pressure</div>
+          </div>
+
+          <!-- Lower Right Division -->
+          <div class="lower-right-division">
+            <div class="row">
+              <!-- Humidity Card -->
+              <div class="col-sm">
+                <div class="mini-weather-card medium-card">
+                  <i class="weather-icon fas fa-cloud-rain"></i>
+                  <div class="temperature">{{humidity}} %</div>
+                  <div class="conditions">Humidity</div>
+                </div>
+              </div>
+
+              <!-- Description Card -->
+              <div class="col-sm">
+                <div class="mini-weather-card medium-card">
+                  <i class="weather-icon fas fa-cloud-rain"></i>
+                  <div class="temperature">{{description}}</div>
+                  <div class="conditions">Description</div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <!-- Country Card -->
+              <div class="col-sm">
+                <div class="mini-weather-card medium-card">
+                  <i class="weather-icon fas fa-cloud-rain"></i>
+                  <div class="temperature">{{country}}</div>
+                  <div class="conditions">Country</div>
+                </div>
+              </div>
+
+              <!-- Region Card -->
+              <div class="col-sm">
+                <div class="mini-weather-card medium-card">
+                  <i class="weather-icon fas fa-cloud-rain"></i>
+                  <div class="temperature">{{region}}</div>
+                  <div class="conditions">Region</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-
 
     <!-- Include Font Awesome for the menu icon -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
 
     <script src="script.js"></script>
     <script>
-        let drawerOpen = false;
+      let drawerOpen = false;
 
-        function toggleDrawer() {
-            var drawer = document.getElementById("myDrawer");
-            var icons = document.querySelectorAll(".drawer-icons a");
+      function toggleDrawer() {
+        var drawer = document.getElementById("myDrawer");
+        var icons = document.querySelectorAll(".drawer-icons a");
 
-            if (drawerOpen) {
-                drawer.classList.remove("drawer-extended");
-                icons.forEach((icon) => {
-                    icon.classList.add("show-text");
-                });
-            } else {
-                drawer.classList.add("drawer-extended");
-                icons.forEach((icon) => {
-                    icon.classList.remove("show-text");
-                });
-            }
-
-            drawerOpen = !drawerOpen;
+        if (drawerOpen) {
+          drawer.classList.remove("drawer-extended");
+          icons.forEach((icon) => {
+            icon.classList.add("show-text");
+          });
+        } else {
+          drawer.classList.add("drawer-extended");
+          icons.forEach((icon) => {
+            icon.classList.remove("show-text");
+          });
         }
+
+        drawerOpen = !drawerOpen;
+      }
     </script>
-</body>
+  </body>
 </html>
-
-

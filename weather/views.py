@@ -108,7 +108,7 @@ def landingPage(request):
         res = urllib.request.urlopen('https://api.openweathermap.org/data/2.5/weather?q='+city+'&appid=b79fe2651c79bf394d7bf6e84807b3b4').read() #get the city data using the api
         json_data = json.loads(res) #Loads the json data from the api
         SearchHistory.objects.create(city=city)
-        search_history = SearchHistory.objects.order_by('-search_time')[:10]
+        search_history = SearchHistory.objects.order_by('-search_time')[:5]
         data = {                                               #convert the json data into dictionary
             "country_code":str(json_data['sys']['country']),  
             "coordinate":str(json_data['coord']['lon']) + " " + str(json_data['coord']['lat']),
@@ -120,6 +120,7 @@ def landingPage(request):
           
     else:
         data = {}
+        
         return render(request, 'index.html', data)  
         
     return render(request, 'index.html', data, )    
